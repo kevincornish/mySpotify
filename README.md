@@ -1,6 +1,6 @@
 # mySpotify
 
-I created this script as there is (at the time of writing this) no way to view your entire history on spotify since account creation. My data is only 35,308 songs but some inserts are failing so the importer isn't perfect at parsing the data (yet!).
+I created this script as there is (at the time of writing this) no way to view your entire history on spotify since account creation. My data is only 35,308 songs but, some inserts are failing so the importer isn't perfect at parsing the data (yet!).
 
 ## Features
 
@@ -8,14 +8,24 @@ I created this script as there is (at the time of writing this) no way to view y
 
 ## Todo
 
-- Bulk insert the json response, current importer is slow
-- Create Views
-
+- Bulk insert the exported json history, current importer is slow
+- Proactively sync between spotify history and database
 
 ### Request spotify data
 - Request your **Full privacy data** [here](https://www.spotify.com/us/account/privacy/).
 - Click **Extended streaming history**.
 - Save all files listed as `endsong_X.json`.
+
+## Create Spotify Developer Application
+
+Create **Spotify Dev App** [here](https://developer.spotify.com/dashboard/applications).
+
+1. **Create a client ID**.
+2. Rename `/music/sample.env` to `.env`
+3. Copy the **public** and the **secret** key into the .env file.
+4. Click `EDIT SETTINGS`
+5. Add `http://localhost:8000/redirect` to the `Redirect URIs`.
+6. Click `Save`
 
 ### Installation
 
