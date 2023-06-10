@@ -19,4 +19,4 @@ def ProfileView(request):
     user = CustomUser.objects.get(id=request.user.id)
     spotify_authenticated = is_spotify_authenticated(user)
     context = {"spotify_authenticated": spotify_authenticated}
-    return render(request, "home.html", context)
+    return render(request, "accounts/profile.html", context)
