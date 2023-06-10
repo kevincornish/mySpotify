@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %}mySpotify{% endblock %}</title>
+  </head>
+  <body>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      {% if not user.is_authenticated %}
+      <a href="{% url 'signup' %}">signup</a>
+      {% else %} {% if user.is_staff %}
+      <a href="{% url 'admin:index' %}">Admin</a>
+      {% endif %}
+    </nav>
+    {{ user.username }} {% if spotify_authenticated == True %} Linked to spotify
+    <a href="{% url 'get-auth-url' %}">(relog)</a>
+    {% else %} not linked
+    <a href="{% url 'get-auth-url' %}">link to spotify</a>
+    {% endif %}
+    <a href="{% url 'logout' %}">logout</a>
+    {% endif %}
+    <hr class="dropdown-divider" />
+    {% block content %}{% endblock %}
+  </body>
+</html>

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import History, Artist, Album, Track
+from .models import History, Artist, Album, Track, SpotifyToken
 
 
 class HistoryAdmin(admin.ModelAdmin):
@@ -31,8 +31,16 @@ class TrackAdmin(admin.ModelAdmin):
         "album_name",
         "artist_name",
     ]
+    
+class SpotifyTokenAdmin(admin.ModelAdmin):
+    list_display = [
+        "user",
+        "created_at",
+        "expires_in",
+    ]
 
 
+admin.site.register(SpotifyToken, SpotifyTokenAdmin)
 admin.site.register(Artist, ArtistAdmin)
 admin.site.register(Album, AlbumAdmin)
 admin.site.register(History, HistoryAdmin)
