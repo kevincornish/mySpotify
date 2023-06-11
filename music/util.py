@@ -1,3 +1,4 @@
+import json
 from requests import post
 from .models import SpotifyToken
 from django.utils import timezone
@@ -96,8 +97,10 @@ def execute_spotify_api_request(user, endpoint, post_=False, put_=False):
         put(BASE_URL + endpoint, headers=headers)
 
     response = get(BASE_URL + endpoint, {}, headers=headers)
+    json_data = json.loads(response.text)
     try:
-        print (response.json())
-        return response.json()
+        if json_data.get('error'):
+            refresh_spotify_token(user)
+        return json_data['items']
     except:
         return {"Error": "Issue with request"}
